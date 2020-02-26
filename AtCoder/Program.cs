@@ -15,15 +15,33 @@ namespace AtCoder
 
 	public class Question
 	{
+		void swap(ref long x, ref long y)
+		{
+			long temp = y;
+			y = x;
+			x = temp;
+		}
+
 		public void Exec()
 		{
-			long time_sec = long.Parse(Console.ReadLine());
-			long sec = time_sec % 60;
-			long min = time_sec / 60;
-			long hour = min / 60;
-			min = min % 60;
+			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			long a = array[0];
+			long b = array[1];
+			long c = array[2];
 
-			Console.WriteLine($"{hour}:{min}:{sec}");
+			if (a > b) {
+				swap(ref a, ref b);
+			}
+
+			if (b > c) {
+				swap(ref b, ref c);
+			}
+
+			if (a > b) {
+				swap(ref a, ref b);
+			}
+
+			Console.WriteLine($"{a} {b} {c}");
 			Console.Out.Flush();
 			Console.ReadKey();
 		}
