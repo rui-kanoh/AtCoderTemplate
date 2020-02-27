@@ -24,26 +24,18 @@ namespace AtCoder
 
 		public void Exec()
 		{
-			long x = -1;
-			long y = -1;
-			List<long[]> list = new List<long[]>();
-			while (x != 0 || y != 0) {
-				var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
-				x = array[0];
-				y = array[1];
-				if (x == 0 && y == 0) {
-					break;
+			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			long a = array[0];
+			long b = array[1];
+			long c = array[2];
+			int count = 0;
+			for (var i = a; i <= b; ++i) {
+				if (c % i == 0) {
+					++count;
 				}
-
-				if (x > y) {
-					swap(ref x, ref y);
-				}
-				list.Add(new[] { x, y });
 			}
 
-			foreach (var item in list) {
-				Console.WriteLine($"{item[0]} {item[1]}");
-			}
+			Console.WriteLine($"{count}");
 
 			Console.ReadKey();
 		}
