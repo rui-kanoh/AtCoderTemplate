@@ -24,25 +24,27 @@ namespace AtCoder
 
 		public void Exec()
 		{
-			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
-			long a = array[0];
-			long b = array[1];
-			long c = array[2];
+			long x = -1;
+			long y = -1;
+			List<long[]> list = new List<long[]>();
+			while (x != 0 || y != 0) {
+				var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+				x = array[0];
+				y = array[1];
+				if (x == 0 && y == 0) {
+					break;
+				}
 
-			if (a > b) {
-				swap(ref a, ref b);
+				if (x > y) {
+					swap(ref x, ref y);
+				}
+				list.Add(new[] { x, y });
 			}
 
-			if (b > c) {
-				swap(ref b, ref c);
+			foreach (var item in list) {
+				Console.WriteLine($"{item[0]} {item[1]}");
 			}
 
-			if (a > b) {
-				swap(ref a, ref b);
-			}
-
-			Console.WriteLine($"{a} {b} {c}");
-			Console.Out.Flush();
 			Console.ReadKey();
 		}
 	}
@@ -61,9 +63,16 @@ namespace Temp {
 			Console.ReadLine();
 		}
 	}
-
 	public class Minesweeper
 	{
+
+		void swap(ref long x, ref long y)
+		{
+			long temp = y;
+			y = x;
+			x = temp;
+		}
+
 		public int CharToInt(char c)
 		{
 			return c == '#' ? 1 : 0;
