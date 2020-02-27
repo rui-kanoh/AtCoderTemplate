@@ -15,27 +15,14 @@ namespace AtCoder
 
 	public class Question
 	{
-		void swap(ref long x, ref long y)
-		{
-			long temp = y;
-			y = x;
-			x = temp;
-		}
-
 		public void Exec()
 		{
 			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
 			long a = array[0];
 			long b = array[1];
-			long c = array[2];
-			int count = 0;
-			for (var i = a; i <= b; ++i) {
-				if (c % i == 0) {
-					++count;
-				}
-			}
+			double div = (double)a / b;
 
-			Console.WriteLine($"{count}");
+			Console.WriteLine($"{a / b} {a % b} {div:f5}");
 
 			Console.ReadKey();
 		}
@@ -45,6 +32,13 @@ namespace AtCoder
 namespace Temp {
 	public class QuestionA
 	{
+		void swap(ref long x, ref long y)
+		{
+			long temp = y;
+			y = x;
+			x = temp;
+		}
+
 		public void Exec()
 		{
 			long n = long.Parse(Console.ReadLine());
