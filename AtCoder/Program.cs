@@ -17,10 +17,32 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			long n = long.Parse(Console.ReadLine());
-			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			long h = -1;
+			long w = -1;
+			List<long[]> hwlist = new List<long[]>();
 
-			Console.WriteLine($"{array.Min()} {array.Max()} {array.Sum()}");
+			while (h != 0 && w != 0) {
+				var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+				h = array[0];
+				w = array[1];
+				if (h == 0 && w == 0) {
+					break;
+				}
+
+				hwlist.Add(new[] { h, w });
+			}
+
+			foreach (var item in hwlist) {
+				for (int i = 0; i < item[0]; ++i) {
+					for (int j = 0; j < item[1]; ++j) {
+						Console.Write("#");
+					}
+					Console.WriteLine("");
+				}
+
+				Console.WriteLine("");
+			}
+
 			Console.ReadKey();
 		}
 	}
