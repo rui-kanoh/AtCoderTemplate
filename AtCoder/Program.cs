@@ -35,7 +35,11 @@ namespace AtCoder
 			foreach (var item in hwlist) {
 				for (int i = 0; i < item[0]; ++i) {
 					for (int j = 0; j < item[1]; ++j) {
-						Console.Write("#");
+						if ((i % 2 == 0 && j % 2 == 1) || (i % 2 == 1 && j % 2 == 0)) {
+							Console.Write(".");
+						} else {
+							Console.Write("#");
+						}
 					}
 					Console.WriteLine("");
 				}
