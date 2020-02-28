@@ -17,12 +17,42 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
-			long a = array[0];
-			long b = array[1];
-			double div = (double)a / b;
+			List<long> answerList = new List<long>();
+			string[] array = { "", "", "" };
 
-			Console.WriteLine($"{a / b} {a % b} {div:f5}");
+			while (array[1] != "?") {
+				array = Console.ReadLine().Split(' ');
+				long a = long.Parse(array[0]);
+				string op = array[1];
+				long b = long.Parse(array[2]);
+				long answer = 0;
+
+				if (array[1] == "?") {
+					break;
+				}
+
+				switch (op) {
+					case "+":
+					default:
+						answer = a + b;
+						break;
+					case "-":
+						answer = a - b;
+						break;
+					case "*":
+						answer = a * b;
+						break;
+					case "/":
+						answer = a / b;
+						break;
+				}
+
+				answerList.Add(answer);
+			}
+
+			foreach (var item in answerList) {
+				Console.WriteLine($"{item}");
+			}
 
 			Console.ReadKey();
 		}
