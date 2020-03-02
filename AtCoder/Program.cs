@@ -15,37 +15,23 @@ namespace AtCoder
 
 	public class Question
 	{
-		void NonGoto(int n)
-		{
-			int i = 1;
-			do {
-				int x = i;
-				if (i % 3 == 0) {
-					Console.Write($" {i}");
-				} else {
-					do {
-						if (x % 10 == 3) {
-							Console.Write($" {i}");
-							break;
-						} else {
-							x /= 10;
-						}
-
-					} while (x != 0) ;
-				}
-
-				++i;
-			} while (i <= n);
-
-			Console.WriteLine("");
-		}
-
 		public void Exec()
 		{
-			int n = int.Parse(Console.ReadLine());
-			NonGoto(n);
+			long n = long.Parse(Console.ReadLine());
+			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			var list = array.Reverse().ToArray();
+			for (int i = 0; i < list.Length; ++i) {
+				Console.Write($"{list[i]}");
+				if (i != list.Count() - 1) {
+					Console.Write(" ");
+				}
+			}
 
-			Console.ReadKey();
+			Console.WriteLine("");
+
+			Console.Out.Flush();
+
+			Console.ReadLine();
 		}
 	}
 }
