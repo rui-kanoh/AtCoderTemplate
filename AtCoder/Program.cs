@@ -15,37 +15,35 @@ namespace AtCoder
 
 	public class Question
 	{
+		void NonGoto(int n)
+		{
+			int i = 1;
+			do {
+				int x = i;
+				if (i % 3 == 0) {
+					Console.Write($" {i}");
+				} else {
+					do {
+						if (x % 10 == 3) {
+							Console.Write($" {i}");
+							break;
+						} else {
+							x /= 10;
+						}
+
+					} while (x != 0) ;
+				}
+
+				++i;
+			} while (i <= n);
+
+			Console.WriteLine("");
+		}
+
 		public void Exec()
 		{
-			long h = -1;
-			long w = -1;
-			List<long[]> hwlist = new List<long[]>();
-
-			while (h != 0 && w != 0) {
-				var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
-				h = array[0];
-				w = array[1];
-				if (h == 0 && w == 0) {
-					break;
-				}
-
-				hwlist.Add(new[] { h, w });
-			}
-
-			foreach (var item in hwlist) {
-				for (int i = 0; i < item[0]; ++i) {
-					for (int j = 0; j < item[1]; ++j) {
-						if ((i % 2 == 0 && j % 2 == 1) || (i % 2 == 1 && j % 2 == 0)) {
-							Console.Write(".");
-						} else {
-							Console.Write("#");
-						}
-					}
-					Console.WriteLine("");
-				}
-
-				Console.WriteLine("");
-			}
+			int n = int.Parse(Console.ReadLine());
+			NonGoto(n);
 
 			Console.ReadKey();
 		}
