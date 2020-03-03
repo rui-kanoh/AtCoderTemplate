@@ -18,16 +18,56 @@ namespace AtCoder
 		public void Exec()
 		{
 			long n = long.Parse(Console.ReadLine());
-			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
-			var list = array.Reverse().ToArray();
-			for (int i = 0; i < list.Length; ++i) {
-				Console.Write($"{list[i]}");
-				if (i != list.Count() - 1) {
-					Console.Write(" ");
+
+			List<int> slist = new List<int>();
+			List<int> hlist = new List<int>();
+			List<int> clist = new List<int>();
+			List<int> dlist = new List<int>();
+			for (int i = 1; i <= 13; ++i) {
+				slist.Add(i);
+				hlist.Add(i);
+				clist.Add(i);
+				dlist.Add(i);
+			}
+
+			for (int i = 0; i < n; ++i) {
+				string line = Console.ReadLine();
+				string[] array = line.Split(' ');
+				string mark = array[0];
+				int number = int.Parse(array[1]);
+
+				switch (mark) {
+					case "S":
+					default:
+						slist.Remove(number);
+						break;
+					case "H":
+						hlist.Remove(number);
+						break;
+					case "C":
+						clist.Remove(number);
+						break;
+					case "D":
+						dlist.Remove(number);
+						break;
 				}
 			}
 
-			Console.WriteLine("");
+			foreach (var item in slist){
+				Console.WriteLine($"S {item}");
+			}
+
+			foreach (var item in hlist) {
+				Console.WriteLine($"H {item}");
+			}
+
+			foreach (var item in clist) {
+				Console.WriteLine($"C {item}");
+			}
+
+			foreach (var item in dlist) {
+				Console.WriteLine($"D {item}");
+			}
 
 			Console.Out.Flush();
 
