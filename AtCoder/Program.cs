@@ -18,58 +18,32 @@ namespace AtCoder
 		public void Exec()
 		{
 			long n = long.Parse(Console.ReadLine());
+			int[,,] floorsss = new int[4, 3, 10];
 
-			List<int> slist = new List<int>();
-			List<int> hlist = new List<int>();
-			List<int> clist = new List<int>();
-			List<int> dlist = new List<int>();
-			for (int i = 1; i <= 13; ++i) {
-				slist.Add(i);
-				hlist.Add(i);
-				clist.Add(i);
-				dlist.Add(i);
+			for (int j = 0; j < n; ++j) {
+				var array = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+				int b = array[0];
+				int f = array[1];
+				int r = array[2];
+				int v = array[3];
+				floorsss[b - 1, f - 1, r - 1] = v;
 			}
 
-			for (int i = 0; i < n; ++i) {
-				string line = Console.ReadLine();
-				string[] array = line.Split(' ');
-				string mark = array[0];
-				int number = int.Parse(array[1]);
+			Console.WriteLine("");
+			for (int i = 0; i < 4; ++i) {
+				for (int j = 0; j < 3; ++j) {
+					for (int k = 0; k < 10; ++k) {
+						Console.Write($" {floorsss[i, j, k]}");
+					}
+					Console.WriteLine("");
+				}
 
-				switch (mark) {
-					case "S":
-					default:
-						slist.Remove(number);
-						break;
-					case "H":
-						hlist.Remove(number);
-						break;
-					case "C":
-						clist.Remove(number);
-						break;
-					case "D":
-						dlist.Remove(number);
-						break;
+				if (i != 4 - 1) {
+					Console.WriteLine("####################");
 				}
 			}
 
-			foreach (var item in slist){
-				Console.WriteLine($"S {item}");
-			}
-
-			foreach (var item in hlist) {
-				Console.WriteLine($"H {item}");
-			}
-
-			foreach (var item in clist) {
-				Console.WriteLine($"C {item}");
-			}
-
-			foreach (var item in dlist) {
-				Console.WriteLine($"D {item}");
-			}
-
-			Console.Out.Flush();
+			//Console.Out.Flush();
 
 			Console.ReadLine();
 		}
