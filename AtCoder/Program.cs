@@ -17,32 +17,33 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			int n = int.Parse(Console.ReadLine());
-			int[,,] floorsss = new int[4, 3, 10];
-
-			for (int j = 0; j < n; ++j) {
-				var array = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-				int b = array[0];
-				int f = array[1];
-				int r = array[2];
-				int v = array[3];
-				floorsss[b - 1, f - 1, r - 1] += v;
-			}
-
-			for (int i = 0; i < floorsss.GetLength(0); ++i) {
-				for (int j = 0; j < floorsss.GetLength(1); ++j) {
-					for (int k = 0; k < floorsss.GetLength(2); ++k) {
-						Console.Write($" {floorsss[i, j, k]}");
-					}
-					Console.WriteLine("");
-				}
-
-				if (i != floorsss.GetLength(0) - 1) {
-					Console.WriteLine("####################");
+			var nm = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+			int n = nm[0];
+			int m = nm[1];
+			int[,] matrix = new int[n, m];
+			for (int i = 0; i < matrix.GetLength(0); ++i) {
+				var array = Console.ReadLine().Split(' ').Select(j => int.Parse(j)).ToArray();
+				for (int j = 0; j < array.Length; ++j) {
+					matrix[i, j] = array[j];
 				}
 			}
 
-			//Console.Out.Flush();
+			int[] vector = new int[m];
+			for (int i = 0; i < vector.Length; ++i) {
+				var v = int.Parse(Console.ReadLine());
+				vector[i] = v;
+			}
+
+			int[] answer = new int[n];
+			for (int i = 0; i < n; ++i) {
+				for (int j = 0; j < m; ++j) {
+					answer[i] += matrix[i, j] * vector[j];
+				}
+			}
+
+			for (int i = 0; i < answer.Length; ++i) {
+				Console.WriteLine($"{answer[i]}");
+			}
 
 			Console.ReadKey();
 		}
