@@ -17,7 +17,7 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			long n = long.Parse(Console.ReadLine());
+			int n = int.Parse(Console.ReadLine());
 			int[,,] floorsss = new int[4, 3, 10];
 
 			for (int j = 0; j < n; ++j) {
@@ -26,26 +26,25 @@ namespace AtCoder
 				int f = array[1];
 				int r = array[2];
 				int v = array[3];
-				floorsss[b - 1, f - 1, r - 1] = v;
+				floorsss[b - 1, f - 1, r - 1] += v;
 			}
 
-			Console.WriteLine("");
-			for (int i = 0; i < 4; ++i) {
-				for (int j = 0; j < 3; ++j) {
-					for (int k = 0; k < 10; ++k) {
+			for (int i = 0; i < floorsss.GetLength(0); ++i) {
+				for (int j = 0; j < floorsss.GetLength(1); ++j) {
+					for (int k = 0; k < floorsss.GetLength(2); ++k) {
 						Console.Write($" {floorsss[i, j, k]}");
 					}
 					Console.WriteLine("");
 				}
 
-				if (i != 4 - 1) {
+				if (i != floorsss.GetLength(0) - 1) {
 					Console.WriteLine("####################");
 				}
 			}
 
 			//Console.Out.Flush();
 
-			Console.ReadLine();
+			Console.ReadKey();
 		}
 	}
 }
