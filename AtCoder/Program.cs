@@ -13,52 +13,40 @@ namespace AtCoder
 		}
 	}
 
-	public struct Exam
-	{
-		public int Middle;
-		public int End;
-		public int Retry;
-	}
-
 	public class Question
 	{
 		public void Exec()
 		{
-			Exam exam = new Exam();
-			List<string> results = new List<string>();
-			Func<Exam, bool> checker = (e) => e.Middle == -1 && e.End == -1 && e.Retry == -1;
-			while (checker.Invoke(exam) == false) {
-				int[] mfr = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-				exam.Middle = mfr[0];
-				exam.End = mfr[1];
-				exam.Retry = mfr[2];
-				if (checker.Invoke(exam)) {
+			int[] nx = new int[2] { -1, -1 };
+			List<int> counts = new List<int>();
+
+			Func<int[], bool> checker = (c) => c[0] == 0 && c[1] == 0;
+
+			while (checker.Invoke(nx) == false) {
+				nx = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+				if (checker.Invoke(nx)) {
 					break;
 				}
 
-				string result = "";
-				if (exam.Middle == -1 || exam.End == -1) {
-					result = "F";
-				} else if (exam.Middle + exam.End >= 80) {
-					result = "A";
-				} else if (exam.Middle + exam.End >= 65) {
-					result = "B";
-				} else if (exam.Middle + exam.End >= 50) {
-					result = "C";
-				} else if (exam.Middle + exam.End >= 30) {
-					if (exam.Retry >= 50) {
-						result = "C";
-					} else {
-						result = "D";
+				int n = nx[0];
+				int x = nx[1];
+
+				int count = 0;
+				for (int i = 1; i <= n; ++i) {
+					for (int j = i + 1; j <= n; ++j) {
+						for (int k = j + 1; k <= n; ++k) {
+							if (i + j + k == x) {
+								++count;
+							}
+						}
 					}
-				} else {
-					result = "F";
 				}
 
-				results.Add(result);
+				
+				counts.Add(count);
 			}
 
-			foreach (var item in results) {
+			foreach (var item in counts) {
 				Console.WriteLine($"{item}");
 			}
 
