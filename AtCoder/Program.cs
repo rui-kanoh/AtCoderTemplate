@@ -17,50 +17,43 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			List<List<int>> lists = new List<List<int>>();
-			var rc = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-			int r = rc[0];
-			for (int i = 0; i < r; ++i) {
-				List<int> list = new List<int>();
-				var array = Console.ReadLine().Split(' ').Select(j => int.Parse(j)).ToArray();
-				foreach (var item in array) {
-					list.Add(item);
+			var nml = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+			int n = nml[0];
+			int m = nml[1];
+			int l = nml[2];
+			int[,] A = new int[n, m];
+			for (int j = 0; j < n; ++j) {
+				var aij = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+				for (int k = 0; k < aij.Length; ++k) {
+					A[j, k] = aij[k];
 				}
-
-				lists.Add(list);
 			}
 
-			for (int i = 0; i < r; ++i) {
-				int sum = 0;
-				for (int j = 0; j < lists[i].Count; ++j) {
-					sum += lists[i][j];
+			int[,] B = new int[m, l];
+			for (int j = 0; j < m; ++j) {
+				var bij = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+				for (int k = 0; k < bij.Length; ++k) {
+					B[j, k] = bij[k];
 				}
-
-				lists[i].Add(sum);
 			}
 
-			List<int> totallist = new List<int>();
-			for (int j = 0; j < lists[0].Count; ++j) {
-				int sum = 0;
-				for (int i = 0; i < lists.Count; ++i) {
-					sum += lists[i][j];
-				}
-
-				totallist.Add(sum);
-			}
-
-			lists.Add(totallist);
-
-			for (int i = 0; i < lists.Count; ++i) {
-				for (int j = 0; j < lists[i].Count; ++j) {
-					Console.Write($"{lists[i][j]}");
-
-					if (j < lists[i].Count - 1) {
-						Console.Write(" ");
-					} else {
-						Console.WriteLine("");
+			int[,] C = new int[n, l];
+			for (int j = 0; j < C.GetLength(0); ++j) {
+				for (int k = 0; k < C.GetLength(1); ++k) {
+					for (int i = 0; i < m; ++i) {
+						C[j, k] += A[j, i] * B[i, k];
 					}
 				}
+			}
+
+			for (int j = 0; j < C.GetLength(0); ++j) {
+				for (int k = 0; k < C.GetLength(1); ++k) {
+					Console.Write($"{C[j, k]}");
+					if (k < C.GetLength(1) - 1) {
+						Console.Write(" ");
+					}
+				}
+				Console.WriteLine("");
 			}
 
 			Console.ReadKey();
