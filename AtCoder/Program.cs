@@ -37,11 +37,11 @@ namespace AtCoder
 				}
 			}
 
-			int[,] C = new int[n, l];
+			long[,] C = new long[n, l];
 			for (int j = 0; j < C.GetLength(0); ++j) {
 				for (int k = 0; k < C.GetLength(1); ++k) {
 					for (int i = 0; i < m; ++i) {
-						C[j, k] += A[j, i] * B[i, k];
+						C[j, k] += (long)A[j, i] * (long)B[i, k];
 					}
 				}
 			}
