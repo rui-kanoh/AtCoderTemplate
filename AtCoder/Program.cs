@@ -17,37 +17,50 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			int[] nx = new int[2] { -1, -1 };
-			List<int> counts = new List<int>();
-
-			Func<int[], bool> checker = (c) => c[0] == 0 && c[1] == 0;
-
-			while (checker.Invoke(nx) == false) {
-				nx = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-				if (checker.Invoke(nx)) {
-					break;
+			List<List<int>> lists = new List<List<int>>();
+			var rc = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
+			int r = rc[0];
+			for (int i = 0; i < r; ++i) {
+				List<int> list = new List<int>();
+				var array = Console.ReadLine().Split(' ').Select(j => int.Parse(j)).ToArray();
+				foreach (var item in array) {
+					list.Add(item);
 				}
 
-				int n = nx[0];
-				int x = nx[1];
-
-				int count = 0;
-				for (int i = 1; i <= n; ++i) {
-					for (int j = i + 1; j <= n; ++j) {
-						for (int k = j + 1; k <= n; ++k) {
-							if (i + j + k == x) {
-								++count;
-							}
-						}
-					}
-				}
-
-				
-				counts.Add(count);
+				lists.Add(list);
 			}
 
-			foreach (var item in counts) {
-				Console.WriteLine($"{item}");
+			for (int i = 0; i < r; ++i) {
+				int sum = 0;
+				for (int j = 0; j < lists[i].Count; ++j) {
+					sum += lists[i][j];
+				}
+
+				lists[i].Add(sum);
+			}
+
+			List<int> totallist = new List<int>();
+			for (int j = 0; j < lists[0].Count; ++j) {
+				int sum = 0;
+				for (int i = 0; i < lists.Count; ++i) {
+					sum += lists[i][j];
+				}
+
+				totallist.Add(sum);
+			}
+
+			lists.Add(totallist);
+
+			for (int i = 0; i < lists.Count; ++i) {
+				for (int j = 0; j < lists[i].Count; ++j) {
+					Console.Write($"{lists[i][j]}");
+
+					if (j < lists[i].Count - 1) {
+						Console.Write(" ");
+					} else {
+						Console.WriteLine("");
+					}
+				}
 			}
 
 			Console.ReadKey();
