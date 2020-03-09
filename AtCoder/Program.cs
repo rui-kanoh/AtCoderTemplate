@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace AtCoder
 {
@@ -17,44 +18,19 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			var nml = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-			int n = nml[0];
-			int m = nml[1];
-			int l = nml[2];
-			int[,] A = new int[n, m];
-			for (int j = 0; j < n; ++j) {
-				var aij = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-				for (int k = 0; k < aij.Length; ++k) {
-					A[j, k] = aij[k];
+			string str = Console.ReadLine();
+			StringBuilder builder = new StringBuilder();
+			foreach (var item in str) {
+				if (char.IsLower(item)) {
+					builder.Append(char.ToUpper(item));
+				} else if (char.IsUpper(item)) {
+					builder.Append(char.ToLower(item));
+				} else {
+					builder.Append(item);
 				}
 			}
 
-			int[,] B = new int[m, l];
-			for (int j = 0; j < m; ++j) {
-				var bij = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
-				for (int k = 0; k < bij.Length; ++k) {
-					B[j, k] = bij[k];
-				}
-			}
-
-			long[,] C = new long[n, l];
-			for (int j = 0; j < C.GetLength(0); ++j) {
-				for (int k = 0; k < C.GetLength(1); ++k) {
-					for (int i = 0; i < m; ++i) {
-						C[j, k] += (long)A[j, i] * (long)B[i, k];
-					}
-				}
-			}
-
-			for (int j = 0; j < C.GetLength(0); ++j) {
-				for (int k = 0; k < C.GetLength(1); ++k) {
-					Console.Write($"{C[j, k]}");
-					if (k < C.GetLength(1) - 1) {
-						Console.Write(" ");
-					}
-				}
-				Console.WriteLine("");
-			}
+			Console.WriteLine($"{builder.ToString()}");
 
 			Console.ReadKey();
 		}
