@@ -18,19 +18,25 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string str = Console.ReadLine();
-			StringBuilder builder = new StringBuilder();
-			foreach (var item in str) {
-				if (char.IsLower(item)) {
-					builder.Append(char.ToUpper(item));
-				} else if (char.IsUpper(item)) {
-					builder.Append(char.ToLower(item));
-				} else {
-					builder.Append(item);
+			string str = "";
+			List<int> sumList = new List<int>();
+			while (str != "0") {
+				str = Console.ReadLine();
+				if (str == "0") {
+					break;
 				}
+
+				int sum = 0;
+				foreach (var item in str) {
+					sum += int.Parse(item.ToString());
+				}
+
+				sumList.Add(sum);
 			}
 
-			Console.WriteLine($"{builder.ToString()}");
+			foreach (var item in sumList) {
+				Console.WriteLine($"{item}");
+			}
 
 			Console.ReadKey();
 		}
