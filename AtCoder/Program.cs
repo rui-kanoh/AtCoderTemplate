@@ -19,23 +19,27 @@ namespace AtCoder
 		public void Exec()
 		{
 			string str = "";
-			List<int> sumList = new List<int>();
-			while (str != "0") {
-				str = Console.ReadLine();
-				if (str == "0") {
+			string tempStr = "temp";
+			while (string.IsNullOrWhiteSpace(tempStr) == false) {
+				tempStr = Console.ReadLine();
+				if (string.IsNullOrWhiteSpace(tempStr)) {
 					break;
 				}
 
-				int sum = 0;
-				foreach (var item in str) {
-					sum += int.Parse(item.ToString());
-				}
+				str += tempStr.ToLower();
+			};
 
-				sumList.Add(sum);
+			//Console.WriteLine(str);
+			List<string> alphabets = new List<string>();
+			char[] chars = str.ToArray();
+			for (char alpha = 'a'; alpha <= 'z'; ++alpha) {
+				char[] finds = Array.FindAll(chars, item => item == alpha);
+				int sum = finds.Length;
+				alphabets.Add($"{alpha.ToString()} : {sum}");
 			}
 
-			foreach (var item in sumList) {
-				Console.WriteLine($"{item}");
+			for (int i = 0; i < alphabets.Count; ++i) {
+				Console.WriteLine($"{alphabets[i]}");
 			}
 
 			Console.ReadKey();
