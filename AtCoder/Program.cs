@@ -18,24 +18,26 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string s = Console.ReadLine();
-			string p = Console.ReadLine();
-
-			bool isOK = false;
-			if (s.Contains(p)) {
-				isOK = true;
-			} else {
-				for (int i = 1; i < s.Length; ++i) {
-					string newStr = s.Substring(i, s.Length - i) + s.Substring(0, i);
-					if (newStr.Contains(p)) {
-						isOK = true;
-						break;
-					}
+			string w = Console.ReadLine();
+			string str = "";
+			while (true) {
+				string p = Console.ReadLine();
+				if (p == "END_OF_TEXT") {
+					break;
 				}
+
+				str += p;
 			}
 
-			string str = isOK ? "Yes" : "No";
-			Console.WriteLine($"{str}");
+			int count = 0;
+			while (str.Contains(w)) {
+				int index = str.IndexOf(w);
+				int length = index + w.Length;
+				++count;
+				str = str.Substring(length, str.Length - length);
+			}
+
+			Console.WriteLine($"{count}");
 			Console.ReadKey();
 		}
 	}
