@@ -18,30 +18,24 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string str = "";
-			string tempStr = "temp";
-			while (string.IsNullOrWhiteSpace(tempStr) == false) {
-				tempStr = Console.ReadLine();
-				if (string.IsNullOrWhiteSpace(tempStr)) {
-					break;
+			string s = Console.ReadLine();
+			string p = Console.ReadLine();
+
+			bool isOK = false;
+			if (s.Contains(p)) {
+				isOK = true;
+			} else {
+				for (int i = 1; i < s.Length; ++i) {
+					string newStr = s.Substring(i, s.Length - i) + s.Substring(0, i);
+					if (newStr.Contains(p)) {
+						isOK = true;
+						break;
+					}
 				}
-
-				str += tempStr.ToLower();
-			};
-
-			//Console.WriteLine(str);
-			List<string> alphabets = new List<string>();
-			char[] chars = str.ToArray();
-			for (char alpha = 'a'; alpha <= 'z'; ++alpha) {
-				char[] finds = Array.FindAll(chars, item => item == alpha);
-				int sum = finds.Length;
-				alphabets.Add($"{alpha.ToString()} : {sum}");
 			}
 
-			for (int i = 0; i < alphabets.Count; ++i) {
-				Console.WriteLine($"{alphabets[i]}");
-			}
-
+			string str = isOK ? "Yes" : "No";
+			Console.WriteLine($"{str}");
 			Console.ReadKey();
 		}
 	}
