@@ -18,24 +18,26 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string w = Console.ReadLine().ToLower();
-
-			int count = 0;
+			List<string> answer = new List<string>();
 			while (true) {
-				string p = Console.ReadLine();
-				if (p == "END_OF_TEXT") {
+				string str = Console.ReadLine();
+				if (str == "-") {
 					break;
 				}
 
-				string[] strs = p.ToLower().Split(' ');
-				foreach (var item in strs) {
-					if (w == item) {
-						++count;
-					}
+				int m = int.Parse(Console.ReadLine());
+				for (int i = 0; i < m; ++i) {
+					int shuffle = int.Parse(Console.ReadLine());
+					str = str.Substring(shuffle, str.Length - shuffle) + str.Substring(0, shuffle);
 				}
+
+				answer.Add(str);
 			}
 
-			Console.WriteLine($"{count}");
+			foreach (var item in answer) {
+				Console.WriteLine($"{item}");
+			}
+
 			Console.ReadKey();
 		}
 	}
