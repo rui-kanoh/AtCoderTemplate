@@ -18,23 +18,21 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string w = Console.ReadLine();
-			string str = "";
+			string w = Console.ReadLine().ToLower();
+
+			int count = 0;
 			while (true) {
 				string p = Console.ReadLine();
 				if (p == "END_OF_TEXT") {
 					break;
 				}
 
-				str += p;
-			}
-
-			int count = 0;
-			while (str.Contains(w)) {
-				int index = str.IndexOf(w);
-				int length = index + w.Length;
-				++count;
-				str = str.Substring(length, str.Length - length);
+				string[] strs = p.ToLower().Split(' ');
+				foreach (var item in strs) {
+					if (w == item) {
+						++count;
+					}
+				}
 			}
 
 			Console.WriteLine($"{count}");
