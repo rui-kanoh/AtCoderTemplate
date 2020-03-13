@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -18,24 +19,47 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			long n = long.Parse(Console.ReadLine());
-			int taro = 0;
-			int hanako = 0;
-			for (int i = 0; i < n; ++i) {
-				var array = Console.ReadLine().Split(' ');
-				int comparison = string.Compare(
-					array[0], array[1], comparisonType: StringComparison.OrdinalIgnoreCase);
-				if (comparison < 0) {
-					hanako += 3;
-				} else if (comparison > 0) {
-					taro += 3;
-				} else {
-					++taro;
-					++hanako;
+			string origin = Console.ReadLine();
+			int q = int.Parse(Console.ReadLine());
+
+			List<string> answer = new List<string>();
+			string command = "";
+
+			string str = origin;
+			while (true) {
+				command = Console.ReadLine();
+				if (string.IsNullOrWhiteSpace(command)) {
+					break;
+				}
+
+				string[] commands = command.Split(' ');
+				int a = int.Parse(commands[1]);
+				int b = int.Parse(commands[2]);
+				string[] tempStr = new string[3];
+				switch (commands[0]) {
+					case "print":
+						answer.Add(str.Substring(a, b - a));
+						break;
+					case "reverse": {
+							tempStr[0] = str.Substring(0, a);
+							tempStr[1] = str.Substring(a, b - a).Reverse().ToString();
+							tempStr[2] = str.Substring(b, str.Length - b);
+							str = tempStr[0] + tempStr[1] + tempStr[2];
+						}
+						break;
+					case "replace": {
+							tempStr[0] = str.Substring(0, a);
+							tempStr[1] = commands[3];
+							tempStr[2] = str.Substring(b, str.Length - b);
+							str = tempStr[0] + tempStr[1] + tempStr[2];
+						}
+						break;
 				}
 			}
 
-			Console.WriteLine($"{taro} {hanako}");
+			foreach (var item in answer) {
+				Console.WriteLine($"{item}");
+			}
 
 			Console.ReadKey();
 		}
