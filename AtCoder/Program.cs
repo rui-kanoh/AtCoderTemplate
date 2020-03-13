@@ -18,25 +18,24 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			List<string> answer = new List<string>();
-			while (true) {
-				string str = Console.ReadLine();
-				if (str == "-") {
-					break;
+			long n = long.Parse(Console.ReadLine());
+			int taro = 0;
+			int hanako = 0;
+			for (int i = 0; i < n; ++i) {
+				var array = Console.ReadLine().Split(' ');
+				int comparison = string.Compare(
+					array[0], array[1], comparisonType: StringComparison.OrdinalIgnoreCase);
+				if (comparison < 0) {
+					hanako += 3;
+				} else if (comparison > 0) {
+					taro += 3;
+				} else {
+					++taro;
+					++hanako;
 				}
-
-				int m = int.Parse(Console.ReadLine());
-				for (int i = 0; i < m; ++i) {
-					int shuffle = int.Parse(Console.ReadLine());
-					str = str.Substring(shuffle, str.Length - shuffle) + str.Substring(0, shuffle);
-				}
-
-				answer.Add(str);
 			}
 
-			foreach (var item in answer) {
-				Console.WriteLine($"{item}");
-			}
+			Console.WriteLine($"{taro} {hanako}");
 
 			Console.ReadKey();
 		}
