@@ -23,34 +23,28 @@ namespace AtCoder
 			int q = int.Parse(Console.ReadLine());
 
 			List<string> answer = new List<string>();
-			string command = "";
-
 			string str = origin;
-			while (true) {
-				command = Console.ReadLine();
-				if (string.IsNullOrWhiteSpace(command)) {
-					break;
-				}
-
+			for (var i = 0; i < q; ++i) {
+				string command = Console.ReadLine();
 				string[] commands = command.Split(' ');
 				int a = int.Parse(commands[1]);
 				int b = int.Parse(commands[2]);
 				string[] tempStr = new string[3];
 				switch (commands[0]) {
 					case "print":
-						answer.Add(str.Substring(a, b - a));
+						answer.Add(str.Substring(a, b - a + 1));
 						break;
 					case "reverse": {
 							tempStr[0] = str.Substring(0, a);
-							tempStr[1] = str.Substring(a, b - a).Reverse().ToString();
-							tempStr[2] = str.Substring(b, str.Length - b);
+							tempStr[1] = new string(str.Substring(a, b - a + 1).Reverse().ToArray());
+							tempStr[2] = str.Substring(b + 1, str.Length - b - 1);
 							str = tempStr[0] + tempStr[1] + tempStr[2];
 						}
 						break;
 					case "replace": {
 							tempStr[0] = str.Substring(0, a);
 							tempStr[1] = commands[3];
-							tempStr[2] = str.Substring(b, str.Length - b);
+							tempStr[2] = str.Substring(b + 1, str.Length - b - 1);
 							str = tempStr[0] + tempStr[1] + tempStr[2];
 						}
 						break;
