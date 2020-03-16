@@ -19,41 +19,11 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			string origin = Console.ReadLine();
-			int q = int.Parse(Console.ReadLine());
+			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
 
-			List<string> answer = new List<string>();
-			string str = origin;
-			for (var i = 0; i < q; ++i) {
-				string command = Console.ReadLine();
-				string[] commands = command.Split(' ');
-				int a = int.Parse(commands[1]);
-				int b = int.Parse(commands[2]);
-				string[] tempStr = new string[3];
-				switch (commands[0]) {
-					case "print":
-						answer.Add(str.Substring(a, b - a + 1));
-						break;
-					case "reverse": {
-							tempStr[0] = str.Substring(0, a);
-							tempStr[1] = new string(str.Substring(a, b - a + 1).Reverse().ToArray());
-							tempStr[2] = str.Substring(b + 1, str.Length - b - 1);
-							str = tempStr[0] + tempStr[1] + tempStr[2];
-						}
-						break;
-					case "replace": {
-							tempStr[0] = str.Substring(0, a);
-							tempStr[1] = commands[3];
-							tempStr[2] = str.Substring(b + 1, str.Length - b - 1);
-							str = tempStr[0] + tempStr[1] + tempStr[2];
-						}
-						break;
-				}
-			}
+			double distance = Math.Sqrt(Math.Pow(array[0] - array[2], 2.0) + Math.Pow(array[1] - array[3], 2.0));
 
-			foreach (var item in answer) {
-				Console.WriteLine($"{item}");
-			}
+			Console.WriteLine($"{distance:f6}");
 
 			Console.ReadKey();
 		}
@@ -73,7 +43,8 @@ namespace Temp {
 		public void Exec()
 		{
 			long n = long.Parse(Console.ReadLine());
-			var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			//var array = Console.ReadLine().Split(' ').Select(i => long.Parse(i)).ToArray();
+			var array = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
 
 			Console.Out.Flush();
 
