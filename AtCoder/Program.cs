@@ -21,9 +21,17 @@ namespace AtCoder
 		{
 			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
 
-			double distance = Math.Sqrt(Math.Pow(array[0] - array[2], 2.0) + Math.Pow(array[1] - array[3], 2.0));
+			double a = array[0];
+			double b = array[1];
+			double c_rad = array[2] / 180.0 * Math.PI;
+			double height = b * Math.Sin(c_rad);
+			double area = a * height / 2.0;
+			double c = Math.Sqrt(a * a + b * b - 2.0 * a * b * Math.Cos(c_rad));
+			double length = a + b + c;
 
-			Console.WriteLine($"{distance:f6}");
+			Console.WriteLine($"{area:f6}");
+			Console.WriteLine($"{length:f6}");
+			Console.WriteLine($"{height:f6}");
 
 			Console.ReadKey();
 		}
