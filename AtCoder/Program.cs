@@ -19,27 +19,25 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			List<double> stdevs = new List<double>();
-			while (true) {
-				string str = Console.ReadLine();
-				if (str == "0") {
-					break;
-				}
+			long n = long.Parse(Console.ReadLine());
+			var vx = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+			var vy = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
 
-				long n = long.Parse(str);
-				var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
-				double ave = array.Average();
-				double stdev = 0.0;
-				for (var i = 0; i < array.Length; ++i) {
-					stdev += (array[i] - ave) * (array[i] - ave);
-				}
-
-				stdev /= array.Length;
-				stdevs.Add(Math.Sqrt(stdev));
+			double[] distances = new double[4];
+			double max = 0.0;
+			for (var i = 0; i < n; ++i) {
+				double diff = Math.Abs(vx[i] - vy[i]);
+				distances[0] += diff;
+				distances[1] += Math.Pow(diff, 2.0);
+				distances[2] += Math.Pow(diff, 3.0);
+				max = Math.Max(max, diff);
 			}
 
-			
-			foreach (var item in stdevs) {
+			distances[1] = Math.Sqrt(distances[1]);
+			distances[2] = Math.Pow(distances[2], 1.0 / 3.0);
+			distances[3] = max;
+
+			foreach (var item in distances) {
 				Console.WriteLine($"{item:f6}");
 			}
 			
