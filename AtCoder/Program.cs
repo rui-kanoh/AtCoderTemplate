@@ -19,27 +19,8 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			long n = long.Parse(Console.ReadLine());
-			var vx = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
-			var vy = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
-
-			double[] distances = new double[4];
-			double max = 0.0;
-			for (var i = 0; i < n; ++i) {
-				double diff = Math.Abs(vx[i] - vy[i]);
-				distances[0] += diff;
-				distances[1] += Math.Pow(diff, 2.0);
-				distances[2] += Math.Pow(diff, 3.0);
-				max = Math.Max(max, diff);
-			}
-
-			distances[1] = Math.Sqrt(distances[1]);
-			distances[2] = Math.Pow(distances[2], 1.0 / 3.0);
-			distances[3] = max;
-
-			foreach (var item in distances) {
-				Console.WriteLine($"{item:f6}");
-			}
+			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+			string str =Console.ReadLine();
 			
 			Console.ReadKey();
 		}
