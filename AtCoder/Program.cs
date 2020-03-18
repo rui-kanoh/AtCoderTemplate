@@ -15,11 +15,21 @@ namespace AtCoder
 		}
 	}
 
+	public class Dice
+	{
+		public int[] Label = new int[6];
+	}
+
 	public class Question
 	{
 		public void Exec()
 		{
+			Dice dice = new Dice();
 			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+			for (var i = 0; i < 6; ++i) {
+				dice.Label[i] = array[i];
+			}
+
 			string str =Console.ReadLine();
 			
 			Console.ReadKey();
