@@ -19,20 +19,30 @@ namespace AtCoder
 	{
 		public void Exec()
 		{
-			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+			List<double> stdevs = new List<double>();
+			while (true) {
+				string str = Console.ReadLine();
+				if (str == "0") {
+					break;
+				}
 
-			double a = array[0];
-			double b = array[1];
-			double c_rad = array[2] / 180.0 * Math.PI;
-			double height = b * Math.Sin(c_rad);
-			double area = a * height / 2.0;
-			double c = Math.Sqrt(a * a + b * b - 2.0 * a * b * Math.Cos(c_rad));
-			double length = a + b + c;
+				long n = long.Parse(str);
+				var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+				double ave = array.Average();
+				double stdev = 0.0;
+				for (var i = 0; i < array.Length; ++i) {
+					stdev += (array[i] - ave) * (array[i] - ave);
+				}
 
-			Console.WriteLine($"{area:f6}");
-			Console.WriteLine($"{length:f6}");
-			Console.WriteLine($"{height:f6}");
+				stdev /= array.Length;
+				stdevs.Add(Math.Sqrt(stdev));
+			}
 
+			
+			foreach (var item in stdevs) {
+				Console.WriteLine($"{item:f6}");
+			}
+			
 			Console.ReadKey();
 		}
 	}
