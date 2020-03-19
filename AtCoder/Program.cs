@@ -25,12 +25,27 @@ namespace AtCoder
 		public void Exec()
 		{
 			Dice dice = new Dice();
-			var array = Console.ReadLine().Split(' ').Select(i => double.Parse(i)).ToArray();
+			var array = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
 			for (var i = 0; i < 6; ++i) {
 				dice.Label[i] = array[i];
 			}
 
 			string str =Console.ReadLine();
+			int topIndex = 1;
+
+			for (var i = 0; i < str.Length; ++i) {
+				switch (str[i]) {
+					case 'E':
+					default:
+						break;
+					case 'N':
+						break;
+					case 'S':
+						break;
+					case 'W':
+						break;
+				}
+			}
 			
 			Console.ReadKey();
 		}
