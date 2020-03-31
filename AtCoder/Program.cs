@@ -17,165 +17,77 @@ namespace AtCoder
 
 	public class Dice
 	{
-		public int[] Label = new int[6];
+		public static int[] Label = new int[6];
+
+		public static void East()
+		{
+			int label = Label[0];
+			Label[0] = Label[3];
+			Label[3] = Label[5];
+			Label[5] = Label[2];
+			Label[2] = label;
+		}
+
+		public static void West()
+		{
+			int label = Label[0];
+			Label[0] = Label[2];
+			Label[2] = Label[5];
+			Label[5] = Label[3];
+			Label[3] = label;
+		}
+
+		public static void North()
+		{
+			int label = Label[0];
+			Label[0] = Label[1];
+			Label[1] = Label[5];
+			Label[5] = Label[4];
+			Label[2] = label;
+		}
+
+		public static void South()
+		{
+			int label = Label[0];
+			Label[0] = Label[3];
+			Label[3] = Label[5];
+			Label[5] = Label[2];
+			Label[2] = label;
+		}
 	}
 
 	public class Question
 	{
-		public static int Dice1(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 4;
-					break;
-				case 'N':
-					ans = 2;
-					break;
-				case 'S':
-					ans = 5;
-					break;
-				case 'W':
-					ans = 2;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static int Dice2(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 4;
-					break;
-				case 'N':
-					ans = 6;
-					break;
-				case 'S':
-					ans = 1;
-					break;
-				case 'W':
-					ans = 3;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static int Dice3(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 6;
-					break;
-				case 'N':
-					ans = 2;
-					break;
-				case 'S':
-					ans = 5;
-					break;
-				case 'W':
-					ans = 1;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static int Dice4(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 1;
-					break;
-				case 'N':
-					ans = 2;
-					break;
-				case 'S':
-					ans = 5;
-					break;
-				case 'W':
-					ans = 6;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static int Dice5(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 4;
-					break;
-				case 'N':
-					ans = 6;
-					break;
-				case 'S':
-					ans = 1;
-					break;
-				case 'W':
-					ans = 3;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static int Dice6(char c)
-		{
-			int ans;
-			switch (c) {
-				case 'E':
-				default:
-					ans = 4;
-					break;
-				case 'N':
-					ans = 2;
-					break;
-				case 'S':
-					ans = 5;
-					break;
-				case 'W':
-					ans = 3;
-					break;
-			}
-
-			return ans;
-		}
-
-		public static Func<char, int>[] funcs = {
-			Dice1, Dice2, Dice3, Dice4, Dice5, Dice6,
-		};
-
 		public void Exec()
 		{
 			Dice dice = new Dice();
 			var array = Console.ReadLine().Split(' ').Select(i => int.Parse(i)).ToArray();
 			for (var i = 0; i < 6; ++i) {
-				dice.Label[i] = array[i];
+				Dice.Label[i] = array[i];
 			}
 
 			string str =Console.ReadLine();
+			int index = 1;
 			for (var i = 0; i < str.Length; ++i) {
-				int index = 0;
-				if (i == 0) {
-					index = funcs[0](str[i]);
-				} else {
-					index = funcs[index - 1](str[i]);
+				switch (c) {
+					case 'E':
+					default:
+						Dice.East();
+						break;
+					case 'N':
+						Dice.North();
+						break;
+					case 'S':
+						Dice.South();
+						break;
+					case 'W':
+						Dice.West();
+						break;
 				}
 			}
-			
+
+			Console.WriteLine($"{Dice.Label[index - 1]}");
+
 			Console.ReadKey();
 		}
 	}
