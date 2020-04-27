@@ -43,16 +43,16 @@ namespace AtCoder
 			Label[0] = Label[1];
 			Label[1] = Label[5];
 			Label[5] = Label[4];
-			Label[2] = label;
+			Label[4] = label;
 		}
 
 		public static void South()
 		{
 			int label = Label[0];
-			Label[0] = Label[3];
-			Label[3] = Label[5];
-			Label[5] = Label[2];
-			Label[2] = label;
+			Label[0] = Label[4];
+			Label[4] = Label[5];
+			Label[5] = Label[1];
+			Label[1] = label;
 		}
 	}
 
@@ -67,9 +67,8 @@ namespace AtCoder
 			}
 
 			string str =Console.ReadLine();
-			int index = 1;
 			for (var i = 0; i < str.Length; ++i) {
-				switch (c) {
+				switch (str[i]) {
 					case 'E':
 					default:
 						Dice.East();
@@ -86,7 +85,7 @@ namespace AtCoder
 				}
 			}
 
-			Console.WriteLine($"{Dice.Label[index - 1]}");
+			Console.WriteLine($"{Dice.Label[0]}");
 
 			Console.ReadKey();
 		}
